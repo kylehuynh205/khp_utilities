@@ -1,0 +1,5 @@
+name: 'Photography Utilities'
+type: module
+description: 'The utilities module for photo.kylehuynh.com'
+core: 8.x
+package: 'Photography'

@@ -1,0 +1,13 @@
+{
+    "name": "utilities",
+    "type": "drupal-module",
+    "description": "The utilities module for photo.kylehuynh.com",
+    "keywords": [
+    ],
+    "homepage": "https://www.drupal.org/project/utilities",
+    "minimum-stability": "dev",
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/utilities",
+        "source": "http://cgit.drupalcode.org/utilities",
+    },
+}
