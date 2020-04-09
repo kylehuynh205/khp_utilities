@@ -1,0 +1,28 @@
+{#
+/**
+* @file
+* Default theme implementation to display a block.
+*
+* @see template_preprocess_block()
+*
+* @ingroup themeable
+*/
+#}
+{% set classes = [
+    'clear-both',
+] %}
+<div{{ attributes.addClass(classes) }}>
+    <div id="justifiied-photostream" class="list-unstyled justified-gallery row clearfix" style="height: auto;">
+        {% for photo in photos %}
+            <div>
+                <a href="{{ photo.field_photo_big_url.value }}" data-sub-html="#caption-{{ photo.id }}">
+                    <img class="img-responsive thumbnail" src="{{ photo.field_photo_thumb_url.value }}">
+                </a>
+                <div id="caption-{{ photo.id }}" style="display:none">
+                    <h4>{{ photo.title.value }}</h4><p>{{ photo.field_photo_description.value }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {{ pager }}
+</div>
