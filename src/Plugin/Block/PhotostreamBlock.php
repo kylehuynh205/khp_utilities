@@ -21,7 +21,7 @@ class PhotostreamBlock extends BlockBase {
         $nids = \Drupal::entityQuery('node')
                 ->condition('type', 'flickr_photo')
                 ->sort('field_date_uploaded' , 'DESC')
-                ->pager('70')
+                //->pager('70')
                 ->execute();
         
         $nodes =  \Drupal\node\Entity\Node::loadMultiple($nids);
@@ -31,9 +31,9 @@ class PhotostreamBlock extends BlockBase {
                 '#photos' => $nodes,
                 '#path' => base_path()
             ],
-            'pager' => [
+            /*'pager' => [
                 '#type' => 'pager',
-            ],
+            ],*/
         ];
         //return $build;
     }

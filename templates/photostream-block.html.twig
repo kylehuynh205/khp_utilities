@@ -13,26 +13,46 @@
 ] %}
 <div{{ attributes.addClass(classes) }}>
     <div id="justifiied-photostream" class="list-unstyled justified-gallery clearfix" style="height: auto;">
+        <input type="hidden" id="total-photos" name="total-photos" value="{{ photos|length}}">
+        <input type="hidden" id="currently-loaded" name="currently-loaded" value="50">
         {% for photo in photos %}
-            <div>
-                <a data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" 
-                   data-facebook-share-url="{{ photo.field_photopage_url.value }}" 
-                   data-twitter-share-url="{{ photo.field_photopage_url.value }}" 
-                   data-googleplus-share-url="{{ photo.field_photopage_url.value }}" 
-                   data-pinterest-share-url="{{ photo.field_photopage_url.value }}"
-                   data-download-url="{{ photo.field_photo_org_url.value }}"
-                    data-sub-html="#caption-{{ photo.id }}"
-                   href="{{ photo.field_photo_big_url.value }}">
-                    <img class="img-responsive thumbnail animated-image" src="{{ photo.field_photo_thumb_url.value }}">
-                </a>
-                <!--<a href="{{ photo.field_photo_big_url.value }}" data-sub-html="#caption-{{ photo.id }}">
-                    <img class="img-responsive thumbnail" src="{{ photo.field_photo_thumb_url.value }}">
-                </a>-->
-                <div id="caption-{{ photo.id }}" style="display:none">
-                    <h4>{{ photo.title.value }}</h4><p>{{ photo.field_photo_description.value }}</p>
-                </div>
-            </div>
+            <!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+             <input type="hidden" id="photo-{{ loop.index }}" name="photo-{{ loop.index }}" value="{{ loop.index }}">
+             
+             <input type="hidden" id="field_photopage_url-{{ loop.index }}" name="photo-{{ loop.index }}" value="{{ photo.field_photopage_url.value }}">
+             <input type="hidden"  id="field_photoid-{{ loop.index }}" value="{{ photo.id }}">
+             <input type="hidden"  id="field_photo_big_url-{{ loop.index }}" value="{{ photo.field_photo_big_url.value }}">
+             <input type="hidden"  id="field_photo_description-{{ loop.index }}" value="{{ photo.field_photo_description.value }}">
+             <input type="hidden"  id="field_photo_thumb_url-{{ loop.index }}" value="{{ photo.field_photo_thumb_url.value }}">
+             <input type="hidden"  id="field_phototitle-{{ loop.index }}" value="{{ photo.title.value }}">
+             
+             <input type="hidden"  id="field_photo_org_url-{{ loop.index }}" value="{{ photo.field_photo_org_url.value }}">
+             
+             {% if loop.index < 50 %}
+                <div>
+                   <a data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1" 
+                      data-facebook-share-url="{{ photo.field_photopage_url.value }}" 
+                      data-twitter-share-url="{{ photo.field_photopage_url.value }}" 
+                      data-googleplus-share-url="{{ photo.field_photopage_url.value }}" 
+                      data-pinterest-share-url="{{ photo.field_photopage_url.value }}"
+                      data-download-url="{{ photo.field_photo_org_url.value }}"
+                       data-sub-html="#caption-{{ photo.id }}"
+                      href="{{ photo.field_photo_big_url.value }}">
+                       <img class="img-responsive thumbnail animated-image" src="{{ photo.field_photo_thumb_url.value }}">
+                   </a>
+                   <div id="caption-{{ photo.id }}" style="display:none">
+                       <h4>{{ photo.title.value }}</h4><p>{{ photo.field_photo_description.value }}</p>
+                   </div>
+               </div>
+            {% endif %}
+            
         {% endfor %}
+       
     </div>
-    {{ pager }}
+    {# pager #}
+    
+    <a class="top-link hide" href="" id="js-top" style="background-color: #999999; opacity: 0.5; color: #111111;">
+        <i class="fas fa-chevron-up fa-3x"></i>
+     </a>
+    
 </div>
