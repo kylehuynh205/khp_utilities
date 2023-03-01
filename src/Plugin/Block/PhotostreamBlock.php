@@ -19,6 +19,7 @@ class PhotostreamBlock extends BlockBase {
      */
     public function build() {
         $nids = \Drupal::entityQuery('node')
+                ->accessCheck(FALSE)
                 ->condition('type', 'flickr_photo')
                 ->sort('field_date_uploaded' , 'DESC')
                 //->pager('70')
